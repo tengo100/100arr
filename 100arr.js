@@ -15,30 +15,37 @@
     $arr = {
         version: "1.0.0",
         name:"100",
-        check: function(arr) {
-            if(!Array.isArray(arr)){
-                throw "arguments type error!";
-            }
-        },
+        //不重复的元素 $arr.one([1,2,2,3,3,4]) === [1,4]
         one:function(arr){
-            this.check(arr);
             return arr.filter(function(el,i,arr){
                 return arr.indexOf(el)===arr.lastIndexOf(el);
             });
         },
+        //洗牌
         shuffle:function(arr){
             return arr.sort(function(){return Math.random()-0.5});
         },
+        //最大值  $arr.max([1,2,5,1,3,10]) === 10
         max:function(arr){
             return Math.max.apply(null,arr);
         },
+        //最小值  $arr.min([1,2,5,1,3,10]) === 1
         min:function(arr){
             return Math.min.apply(null,arr);
         },
+        //元素去重复  $arr.deduped([1,1,2,2,3,3]) ===  [1,2,3]
         deduped:function(arr){
             return arr.filter(function(el,i,arr){
                return arr.indexOf(el)===i;
             });
+        },
+        //两个数组都包含的元素  $arr.inter([1,2,3],[1,2,5]) === [1,2]
+        inter:function(a,b){
+            return a.filter(function(x) { return b.indexOf(x) != -1; });
+        },
+        //两个数组不同的元素  $arr.diff([1,2,3],[1,2,5]) === [3,5]
+        diff:function(a,b){
+            return a.filter(function(x) { return b.indexOf(x) == -1; }).concat(b.filter(function(x) { return a.indexOf(x) == -1; }));
         }
     };
     return $arr;
