@@ -46,6 +46,13 @@
         //两个数组不同的元素  $arr.diff([1,2,3],[1,2,5]) === [3,5]
         diff:function(a,b){
             return a.filter(function(x) { return b.indexOf(x) == -1; }).concat(b.filter(function(x) { return a.indexOf(x) == -1; }));
+        },
+        //统计数组中各个元素的个数  $arr.count(['dog','cat','mouse','dog','cat','cat']) === {'dog':2,'cat':3,'mouse':1}
+        count:function(arr){
+            return arr.reduce(function(prev,next){
+                prev[next]=(prev[next]+1)||1;
+                return prev;
+            },{})
         }
     };
     return $arr;
